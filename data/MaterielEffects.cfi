@@ -1,0 +1,20 @@
+# Material effects to be simulated in the tracker material and associated cuts
+PSet MaterialEffects = 
+{
+# Enable photon pair conversion 
+	bool PairProduction = true
+# Smallest photon energy allowed for conversion
+		double photonEnergy = 0.100 
+# Enable electron Bremsstrahlung
+	bool Bremsstrahlung = true
+# Smallest bremstrahlung photon energy
+		double bremEnergy = 0.100
+# Smallest bremsstrahlung energy fraction (wrt to the electron energy)
+		double bremEnergyFraction = 0.005
+# Enable dE/dx
+	bool EnergyLoss = true
+# Smallest pT before dE/dx treatment is given up (and track is stopped)
+		double pTmin = 0.100
+# Enable Multiple Scattering
+	bool MultipleScattering = true	
+}
