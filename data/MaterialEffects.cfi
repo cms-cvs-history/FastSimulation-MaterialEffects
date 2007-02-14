@@ -16,5 +16,29 @@ PSet MaterialEffects =
 # Smallest pT before dE/dx treatment is given up (and track is stopped)
 		double pTmin = 0.100
 # Enable Multiple Scattering
-	bool MultipleScattering = true	
+	bool MultipleScattering = true
+# Enable Nuclear Interactions
+	bool NuclearInteraction = true
+# The files of nuclear interactions to be read (ordered by increasing energies)
+		untracked vstring fileNames = {
+			"NuclearInteractions_15GeV.root",
+			"NuclearInteractions_30GeV.root",
+			"NuclearInteractions_150GeV.root",
+			"NuclearInteractions_300GeV.root"
+		}
+	bool NuclearInteractionEDM = false
+# The files of nuclear interactions to be read (ordered by increasing energies)
+		secsource NuclearInteractionInput = NUSource {
+		      	untracked vstring fileNames = {
+				"file:NuclearInteractionsFromPion_05GeV.root",
+				"file:NuclearInteractionsFromPion_10GeV.root",
+				"file:NuclearInteractionsFromPion_15GeV.root"
+			}
+		}
+# The energies of the pions used in the above files (same order)
+ 	        untracked vdouble pionEnergies = {15., 30., 150., 300.}
+# The smallest pion energy for which nuclear interactions are simulated
+		double pionEnergy = 0.500
+# The ratio between radiation lengths and interation lengths in the tracker
+		double lengthRatio = 0.25
 }
