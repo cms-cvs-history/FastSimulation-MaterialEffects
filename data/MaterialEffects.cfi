@@ -40,5 +40,5 @@ PSet MaterialEffects =
 # The smallest pion energy for which nuclear interactions are simulated
 		double pionEnergy = 0.500
 # The ratio between radiation lengths and interation lengths in the tracker
-		double lengthRatio = 0.25
+		double lengthRatio = 0.24
 }
