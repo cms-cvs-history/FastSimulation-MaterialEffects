@@ -1,7 +1,11 @@
 <use name=root>
 <use name=FWCore/Framework>
-<use name=SimDataFormats/Track>
 <use name=FWCore/ParameterSet>
+<use name=Foundation/PluginManager>
+<use name=SimDataFormats/Track>
+<use name=DataFormats/Common>
+<use name=IOPool/Common>
+<use name=IOPool/Input>
 <use name=FastSimulation/Event>
 <use name=FastSimulation/Particle>
 <use name=FastSimulation/Utilities>
@@ -18,4 +22,8 @@
 
 <library file=NuclearInteractionFilter.cc name=NuclearInteractionFilter>
 <flags SEAL_PLUGIN_NAME="NuclearInteractionFilter">
+</library>
+
+<library file=NUSource.cc name=NUSource>
+<flags SEAL_PLUGIN_NAME="NUSource">
 </library>

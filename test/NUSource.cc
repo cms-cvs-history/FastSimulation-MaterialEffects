@@ -1,8 +1,57 @@
 /*----------------------------------------------------------------------
-$Id: NUSource.cc,v 1.2 2006/04/26 13:02:07 pjanot Exp $
+
+NUSource: This is an InputSource for NUclear interactions
+
+$Id: NUSource.h,v 1.1 2007/02/14 09:50:04 pjanot Exp $
+
 ----------------------------------------------------------------------*/
 
-#include "FastSimulation/MaterialEffects/interface/NUSource.h"
+#include <memory>
+#include <vector>
+#include <string>
+#include <map>
+
+#include "IOPool/Input/src/Inputfwd.h"
+
+#include "FWCore/Framework/interface/Frameworkfwd.h"
+#include "FWCore/Framework/interface/VectorInputSource.h"
+
+#include "boost/shared_ptr.hpp"
+
+namespace edm {
+
+  class RootFile;
+
+  class NUSource : public VectorInputSource {
+
+  public:
+    explicit NUSource(ParameterSet const& pset, InputSourceDescription const& desc);
+    virtual ~NUSource();
+
+
+  private:
+    typedef boost::shared_ptr<RootFile> RootFileSharedPtr;
+    typedef std::map<std::string, RootFileSharedPtr> RootFileMap;
+    NUSource(NUSource const&); // disable copy construction
+    NUSource & operator=(NUSource const&); // disable assignment
+    virtual std::auto_ptr<EventPrincipal> read();
+    virtual std::auto_ptr<EventPrincipal> readIt(int entry);
+    virtual void readMany_(int number, EventPrincipalVector& result);
+    void init();
+
+    RootFileSharedPtr rootFile_;
+    RootFileMap rootFiles_;
+    std::map<RootFileSharedPtr,int> eventsInRootFiles; 
+    int totalNbEvents;
+    int localEntry;
+
+  }; // class NUSource
+}
+
+/*----------------------------------------------------------------------
+$Id: NUSource.cc,v 1.1 2007/02/14 09:50:05 pjanot Exp $
+----------------------------------------------------------------------*/
+
 #include "IOPool/Input/src/RootFile.h"
 #include "IOPool/Common/interface/ClassFiller.h"
 
@@ -54,13 +103,15 @@ NUSource::init() {
     if (it == rootFiles_.end()) {
       
       // Set the shared_ptr of the RooFile
-      rootFile_ = RootFileSharedPtr(new RootFile(*fileIter, catalog().url()));
+      rootFile_ = RootFileSharedPtr(new RootFile(*fileIter, 
+						 catalog().url(),
+						 processConfiguration()));
 
       // Update the map of stored files
       rootFiles_[*fileIter] = rootFile_;
 
       // Update the total number of event
-      totalNbEvents = rootFile_->entries();
+      totalNbEvents = rootFile_->eventTree().entries();
       eventsInRootFiles[rootFile_] = totalNbEvents;
       
     }
@@ -107,7 +158,7 @@ NUSource::readIt(int entry) {
   //  localEntry = (int) (nbEvents * (entry-file*1E8) / 1E8);
 
   // Set the entry number
-  rootFile_->setEntryNumber(localEntry-localEntry/nbEvents*nbEvents);
+  rootFile_->eventTree().setEntryNumber(localEntry-localEntry/nbEvents*nbEvents);
   ++localEntry;
 
   // Return the event
@@ -134,3 +185,13 @@ NUSource::readMany_(int number, EventPrincipalVector& result) {
 
 // end namespace edm
 }
+
+#include "PluginManager/ModuleDef.h"
+#include "FWCore/Framework/interface/InputSourceMacros.h"
+#include "FWCore/Framework/interface/VectorInputSourceMacros.h"
+#include "FWCore/Framework/interface/MakerMacros.h"
+
+using edm::NUSource;
+DEFINE_SEAL_MODULE();
+DEFINE_ANOTHER_FWK_INPUT_SOURCE(NUSource);
+DEFINE_ANOTHER_FWK_VECTOR_INPUT_SOURCE(NUSource);
