@@ -48,12 +48,10 @@ class NuclearInteractionFilter : public edm::EDFilter {
 NuclearInteractionFilter::NuclearInteractionFilter(const edm::ParameterSet& p) 
 {  
 
-  vertexGenerator_ = p.getParameter<edm::ParameterSet>
-    ( "FilterVertexGenerator" );   
   particleFilter_ = p.getParameter<edm::ParameterSet>
     ( "FilterParticleFilter" );   
   // For the full sim
-  mySimEvent = new FSimEvent(vertexGenerator_, particleFilter_);
+  mySimEvent = new FSimEvent(particleFilter_);
 
 }
 
