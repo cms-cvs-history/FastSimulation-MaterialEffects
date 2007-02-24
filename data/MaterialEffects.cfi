@@ -21,9 +21,17 @@ PSet MaterialEffects =
 	bool NuclearInteraction = true
 # The files of nuclear interactions to be read (ordered by increasing energies)
 		untracked vstring fileNames = {
+			"NuclearInteractions_1GeV.root",
+			"NuclearInteractions_2GeV.root",
+			"NuclearInteractions_3GeV.root",
+			"NuclearInteractions_5GeV.root",
+			"NuclearInteractions_9GeV.root",
 			"NuclearInteractions_15GeV.root",
+			"NuclearInteractions_20GeV.root",
 			"NuclearInteractions_30GeV.root",
+			"NuclearInteractions_50GeV.root",
 			"NuclearInteractions_150GeV.root",
+			"NuclearInteractions_225GeV.root",
 			"NuclearInteractions_300GeV.root"
 		}
 	bool NuclearInteractionEDM = false
@@ -36,9 +44,15 @@ PSet MaterialEffects =
 			}
 		}
 # The energies of the pions used in the above files (same order)
- 	        untracked vdouble pionEnergies = {15., 30., 150., 300.}
+ 	        untracked vdouble pionEnergies = {
+	1., 2., 3., 5., 9., 15., 20., 30., 50., 150., 225., 300.}
+# The scaling of the inelastic cross section with energy 
+		untracked vdouble ratioRatio =  {
+	0.0892455, 0.613859, 0.897045, 1.00000, 0.971305, 0.956828,
+	0.968624,0.975242, 0.944918, 0.930526, 0.929239, 0.915461 }
 # The smallest pion energy for which nuclear interactions are simulated
 		double pionEnergy = 0.500
-# The ratio between radiation lengths and interation lengths in the tracker
-		double lengthRatio = 0.24
+# The ratio between radiation lengths and interation lengths in the tracker at 15 GeV
+		double lengthRatio = 0.2508
+
 }
