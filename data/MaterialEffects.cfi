@@ -54,5 +54,8 @@ PSet MaterialEffects =
 		double pionEnergy = 0.500
 # The ratio between radiation lengths and interation lengths in the tracker at 15 GeV
 		double lengthRatio = 0.2508
+# The file with the last nuclear interaction read in the previous run
+# to be put in the local running directory (if desired)
+		untracked string inputFile = "NuclearInteractionInputFile.txt"
 
 }
