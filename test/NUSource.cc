@@ -2,7 +2,7 @@
 
 NUSource: This is an InputSource for NUclear interactions
 
-$Id: NUSource.cc,v 1.1 2007/02/15 18:04:22 pjanot Exp $
+$Id: NUSource.h,v 1.1 2007/02/14 09:50:04 pjanot Exp $
 
 ----------------------------------------------------------------------*/
 
@@ -49,16 +49,16 @@ namespace edm {
 }
 
 /*----------------------------------------------------------------------
-$Id: NUSource.cc,v 1.1 2007/02/15 18:04:22 pjanot Exp $
+$Id: NUSource.cc,v 1.1 2007/02/14 09:50:05 pjanot Exp $
 ----------------------------------------------------------------------*/
 
 #include "IOPool/Input/src/RootFile.h"
 #include "IOPool/Common/interface/ClassFiller.h"
 
-#include "DataFormats/Provenance/interface/BranchDescription.h"
+#include "DataFormats/Common/interface/BranchDescription.h"
 #include "FWCore/Framework/interface/EventPrincipal.h"
-#include "DataFormats/Provenance/interface/ProductRegistry.h"
-#include "DataFormats/Provenance/interface/ProductID.h"
+#include "DataFormats/Common/interface/ProductRegistry.h"
+#include "DataFormats/Common/interface/ProductID.h"
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
 #include "FWCore/ParameterSet/interface/Registry.h"
 
@@ -186,7 +186,7 @@ NUSource::readMany_(int number, EventPrincipalVector& result) {
 // end namespace edm
 }
 
-#include "FWCore/PluginManager/interface/ModuleDef.h"
+#include "PluginManager/ModuleDef.h"
 #include "FWCore/Framework/interface/InputSourceMacros.h"
 #include "FWCore/Framework/interface/VectorInputSourceMacros.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
