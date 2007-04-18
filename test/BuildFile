@@ -13,17 +13,17 @@
 <use name=DQMServices/CoreROOT>
 
 <library file=testMaterialEffects.cc name=testMaterialEffects>
-<flags SEAL_PLUGIN_NAME="testMaterialEffects">
+<flags EDM_PLUGIN=1>
 </library>
 
 <library file=testNuclearInteractions.cc name=testNuclearInteractions>
-<flags SEAL_PLUGIN_NAME="testNuclearInteractions">
+<flags EDM_PLUGIN=1>
 </library>
 
 <library file=NuclearInteractionFilter.cc name=NuclearInteractionFilter>
-<flags SEAL_PLUGIN_NAME="NuclearInteractionFilter">
+<flags EDM_PLUGIN=1>
 </library>
 
 <library file=NUSource.cc name=NUSource>
-<flags SEAL_PLUGIN_NAME="NUSource">
+<flags EDM_PLUGIN=1>
 </library>
