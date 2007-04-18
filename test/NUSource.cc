@@ -2,7 +2,7 @@
 
 NUSource: This is an InputSource for NUclear interactions
 
-$Id: NUSource.cc,v 1.1 2007/02/15 18:04:22 pjanot Exp $
+$Id: NUSource.cc,v 1.2 2007/03/08 17:14:24 wmtan Exp $
 
 ----------------------------------------------------------------------*/
 
@@ -11,7 +11,7 @@ $Id: NUSource.cc,v 1.1 2007/02/15 18:04:22 pjanot Exp $
 #include <string>
 #include <map>
 
-#include "IOPool/Input/src/Inputfwd.h"
+#include "IOPool/Input/interface/Inputfwd.h"
 
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/VectorInputSource.h"
@@ -49,10 +49,10 @@ namespace edm {
 }
 
 /*----------------------------------------------------------------------
-$Id: NUSource.cc,v 1.1 2007/02/15 18:04:22 pjanot Exp $
+$Id: NUSource.cc,v 1.2 2007/03/08 17:14:24 wmtan Exp $
 ----------------------------------------------------------------------*/
 
-#include "IOPool/Input/src/RootFile.h"
+#include "IOPool/Input/interface/RootFile.h"
 #include "IOPool/Common/interface/ClassFiller.h"
 
 #include "DataFormats/Provenance/interface/BranchDescription.h"
