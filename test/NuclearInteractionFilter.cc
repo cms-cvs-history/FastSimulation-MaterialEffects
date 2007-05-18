@@ -82,11 +82,10 @@ bool NuclearInteractionFilter::filter(edm::Event& iEvent, const edm::EventSetup&
   
   bool accepted = false;
 
-  HepLorentzVector theProtonMomentum(0.,0.,0.,0.986);
+  XYZTLorentzVector theProtonMomentum(0.,0.,0.,0.986);
 
   // There is only one vertex : reject
-  const std::vector<FSimVertex>& fsimVertices = *(mySimEvent->vertices() );
-  if ( fsimVertices.size() == 1 ) return accepted; 
+  if ( mySimEvent->nVertices() == 1 ) return accepted; 
   
   // Pion's number of daughters
   FSimVertex& thePionVertex = mySimEvent->vertex(1);
