@@ -13,10 +13,10 @@ PSet MaterialEffects =
 		double bremEnergyFraction = 0.005
 # Enable dE/dx
 	bool EnergyLoss = true
-# Smallest pT before dE/dx treatment is given up (and track is stopped)
-		double pTmin = 0.100
 # Enable Multiple Scattering
 	bool MultipleScattering = true
+# Smallest pT for the Mutliple Scattering 
+		double pTmin = 0.500
 # Enable Nuclear Interactions
 	bool NuclearInteraction = true
 # The files of nuclear interactions to be read (ordered by increasing energies)
