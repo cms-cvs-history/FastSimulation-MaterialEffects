@@ -95,8 +95,8 @@ PSet MaterialEffects =
     # The correspondence between long-lived hadrons/ions and the simulated hadron list
     untracked vint32 protons = { 2212, 3222, -101, -102, -103, -104 }
     untracked vint32 antiprotons = { -2212, -3222 }
-    untracked vint32 neutrons = { 2112, 3122, 3112, 3312, 3322 }
-    untracked vint32 antineutrons = { -2112, -3122, -3112, -3312, -3322 }
+    untracked vint32 neutrons = { 2112, 3122, 3112, 3312, 3322, 3334 }
+    untracked vint32 antineutrons = { -2112, -3122, -3112, -3312, -3322, -3334 }
     untracked vint32 K0Ls = { 130, 310 }
     untracked vint32 Kplusses = { 321 }
     untracked vint32 Kminusses = { -321 }
