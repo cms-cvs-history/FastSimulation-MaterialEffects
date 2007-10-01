@@ -1,61 +1,106 @@
 # Material effects to be simulated in the tracker material and associated cuts
 PSet MaterialEffects = 
 {
-# Enable photon pair conversion 
-	bool PairProduction = true
-# Smallest photon energy allowed for conversion
-		double photonEnergy = 0.100 
-# Enable electron Bremsstrahlung
-	bool Bremsstrahlung = true
-# Smallest bremstrahlung photon energy
-		double bremEnergy = 0.100
-# Smallest bremsstrahlung energy fraction (wrt to the electron energy)
-		double bremEnergyFraction = 0.005
-# Enable dE/dx
-	bool EnergyLoss = true
-# Enable Multiple Scattering
-	bool MultipleScattering = true
-# Smallest pT for the Mutliple Scattering 
-		double pTmin = 0.500
-# Enable Nuclear Interactions
-	bool NuclearInteraction = true
-# The files of nuclear interactions to be read (ordered by increasing energies)
-		untracked vstring fileNames = {
-			"NuclearInteractions_1GeV.root",
-			"NuclearInteractions_2GeV.root",
-			"NuclearInteractions_3GeV.root",
-			"NuclearInteractions_5GeV.root",
-			"NuclearInteractions_9GeV.root",
-			"NuclearInteractions_15GeV.root",
-			"NuclearInteractions_20GeV.root",
-			"NuclearInteractions_30GeV.root",
-			"NuclearInteractions_50GeV.root",
-			"NuclearInteractions_150GeV.root",
-			"NuclearInteractions_225GeV.root",
-			"NuclearInteractions_300GeV.root"
-		}
-	bool NuclearInteractionEDM = false
-# The files of nuclear interactions to be read (ordered by increasing energies)
-		secsource NuclearInteractionInput = NUSource {
-		      	untracked vstring fileNames = {
-				"file:NuclearInteractionsFromPion_05GeV.root",
-				"file:NuclearInteractionsFromPion_10GeV.root",
-				"file:NuclearInteractionsFromPion_15GeV.root"
-			}
-		}
-# The energies of the pions used in the above files (same order)
- 	        untracked vdouble pionEnergies = {
-	1., 2., 3., 5., 9., 15., 20., 30., 50., 150., 225., 300.}
-# The scaling of the inelastic cross section with energy 
-		untracked vdouble ratioRatio =  {
-	0.0892455, 0.613859, 0.897045, 1.00000, 0.971305, 0.956828,
-	0.968624,0.975242, 0.944918, 0.930526, 0.929239, 0.915461 }
-# The smallest pion energy for which nuclear interactions are simulated
-		double pionEnergy = 0.500
-# The ratio between radiation lengths and interation lengths in the tracker at 15 GeV
-		double lengthRatio = 0.2508
-# The file with the last nuclear interaction read in the previous run
-# to be put in the local running directory (if desired)
-		untracked string inputFile = "NuclearInteractionInputFile.txt"
+    # Enable photon pair conversion 
+    bool PairProduction = true
+    # Smallest photon energy allowed for conversion
+    double photonEnergy = 0.100 
+    # Enable electron Bremsstrahlung
+    bool Bremsstrahlung = true
+    # Smallest bremstrahlung photon energy
+    double bremEnergy = 0.100
+    # Smallest bremsstrahlung energy fraction (wrt to the electron energy)
+    double bremEnergyFraction = 0.005
+    # Enable dE/dx
+    bool EnergyLoss = true
+    # Enable Multiple Scattering
+    bool MultipleScattering = true
+    # Smallest pT for the Mutliple Scattering 
+    double pTmin = 0.500
+    # Enable Nuclear Interactions
+    bool NuclearInteraction = true
+    # The energies of the pions used in the above files (same order)
+    untracked vdouble pionEnergies = {
+	1., 2., 3., 4., 5., 7., 9., 12., 15., 20., 30., 
+	50., 100., 200., 300., 500., 700., 1000.
+    }
+    # The particle types simulated
+    untracked vint32 pionTypes = { 
+	211, -211, 130, 321, -321, 2212, -2212, 2112, -2112
+    } 
+    # The corresponding particle names
+    untracked vstring pionNames = { 
+	"piplus", "piminus", "K0L", "Kplus", "Kminus", "p", "pbar", "n", "nbar"
+    }
+    # The corresponding particle masses
+    untracked vdouble pionMasses = { 
+	0.13957, 0.13957, 0.497648, 0.493677, 0.493677, 
+	0.93827, 0.93827, 0.939565, 0.939565 
+    }
+    # The corresponding smallest momenta for which an inleatic interaction may occur
+    untracked vdouble pionMinP = { 
+	0.7, 0.0, 1.0, 1.0, 0.0, 1.1, 0.0, 1.1, 0.0 
+    }
+    # The scaling of the inelastic cross section with energy 
+    untracked vdouble ratios = {
+	// pi+ (211)
+	0.031390573,0.531842852,0.819614219,0.951251711,0.986382750,1.000000000,0.985087033,0.982996773,
+	0.990832192,0.992237923,0.994841580,0.973816742,0.967264815,0.971714258,0.969122824,0.978681792,
+	0.977312732,0.984255819,
+	// pi- (-211)
+	0.035326512,0.577356403,0.857118809,0.965683504,0.989659360,1.000000000,0.989599240,0.980665408,
+	0.988384816,0.981038152,0.975002104,0.959996152,0.953310808,0.954705592,0.957615400,0.961150456,
+	0.965022184,0.960573304,
+	// K0L (130)
+	0.000000000,0.370261189,0.649793096,0.734342408,0.749079499,0.753360057,0.755790543,0.755872164,
+	0.751337674,0.746685288,0.747519634,0.739357554,0.735004444,0.803039922,0.832749896,0.890900187,
+	0.936734805,1.000000000,
+	// K+ (321)
+	0.000000000,0.175571717,0.391683394,0.528946472,0.572818635,0.614210280,0.644125538,0.670304050,
+	0.685144573,0.702870161,0.714708513,0.730805263,0.777711536,0.831090576,0.869267129,0.915747562,
+	0.953370523,1.000000000,
+	// K- (-321)
+	0.000000000,0.365353210,0.611663677,0.715315908,0.733498956,0.738361302,0.745253654,0.751459671,
+	0.750628335,0.746442657,0.750850669,0.744895986,0.735093960,0.791663444,0.828609543,0.889993040,
+	0.940897842,1.000000000,
+	// proton (2212)
+	0.000000000,0.042849136,0.459103223,0.666165343,0.787930873,0.890397011,0.920999533,0.937832788,
+	0.950920131,0.966595049,0.979542270,0.988061653,0.983260159,0.988958431,0.991723494,0.995273237,
+	1.000000000,0.999962634,
+	// anti-proton (-2212)
+	1.000000000,0.849956907,0.775625988,0.802018230,0.816207485,0.785899785,0.754998487,0.728977244, 
+	0.710010673,0.670890339,0.665627872,0.652682888,0.613334247,0.647534574,0.667910938,0.689919693, 
+	0.709200185,0.724199928,
+	// neutron (2112)
+	0.000000000,0.059216484,0.437844536,0.610370629,0.702090648,0.780076890,0.802143073,0.819570432,
+	0.825829666,0.840079750,0.838435509,0.837529986,0.835687165,0.885205014,0.912450156,0.951451221,
+	0.973215562,1.000000000,
+	// anti-neutron
+	1.000000000,0.849573257,0.756479495,0.787147094,0.804572414,0.791806302,0.760234588,0.741109531,
+	0.724118186,0.692829761,0.688465897,0.671806061,0.636461171,0.675314029,0.699134460,0.724305037,
+	0.742556115,0.758504713
+    }
+    
+    #
+    # The smallest pion energy for which nuclear interactions are simulated
+    double pionEnergy = 0.500
+    # The ratio between radiation lengths and interation lengths in the tracker at 15 GeV
+    vdouble lengthRatio = { 
+	0.2508, 0.2549, 0.3380, 0.2879, 0.3171, 0.3282, 0.5371, 0.3859, 0.5086
+    }
+    # The file with the last nuclear interaction read in the previous run
+    # to be put in the local running directory (if desired)
+    untracked string inputFile = "NuclearInteractionInputFile.txt"
+
+    # The correspondence between long-lived hadrons/ions and the simulated hadron list
+    untracked vint32 protons = { 2212, 3222, -101, -102, -103, -104 }
+    untracked vint32 antiprotons = { -2212, -3222 }
+    untracked vint32 neutrons = { 2112, 3122, 3112, 3312, 3322, 3334 }
+    untracked vint32 antineutrons = { -2112, -3122, -3112, -3312, -3322, -3334 }
+    untracked vint32 K0Ls = { 130, 310 }
+    untracked vint32 Kplusses = { 321 }
+    untracked vint32 Kminusses = { -321 }
+    untracked vint32 Piplusses = { 211 }
+    untracked vint32 Piminusses = { -211 }
 
 }
