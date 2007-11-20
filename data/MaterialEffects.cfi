@@ -88,6 +88,9 @@ PSet MaterialEffects =
     vdouble lengthRatio = { 
 	0.2508, 0.2549, 0.3380, 0.2879, 0.3171, 0.3282, 0.5371, 0.3859, 0.5086
     }
+    # and the global fudge factor to make it fit
+    double fudgeFactor = 0.90
+
     # The file with the last nuclear interaction read in the previous run
     # to be put in the local running directory (if desired)
     untracked string inputFile = "NuclearInteractionInputFile.txt"
