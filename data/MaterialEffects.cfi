@@ -86,10 +86,12 @@ PSet MaterialEffects =
     double pionEnergy = 0.500
     # The ratio between radiation lengths and interation lengths in the tracker at 15 GeV
     vdouble lengthRatio = { 
-	0.2508, 0.2549, 0.3380, 0.2879, 0.3171, 0.3282, 0.5371, 0.3859, 0.5086
+#        pi+      pi-    K0L      K+      K-      p      pbar     n      nbar
+#	0.2508, 0.2549, 0.3380, 0.2879, 0.3171, 0.3282, 0.5371, 0.3859, 0.5086 # before 170 tuning
+	0.2257, 0.2294, 0.3042, 0.2591, 0.2854, 0.3101, 0.5216, 0.3668, 0.4898 # after 170 tuning
     }
-    # and the global fudge factor to make it fit
-    double fudgeFactor = 0.90
+    # and a global fudge factor for TEC Layers to make it fit
+    double fudgeFactor = 1.20 # after 170 tuning
 
     # The file with the last nuclear interaction read in the previous run
     # to be put in the local running directory (if desired)

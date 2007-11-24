@@ -17,7 +17,8 @@ for energy in 15
 echo "Energy "$energy
 #echo "pT = "$pt
 
-    for pid in 211 -211 130 321 -321 2112 -2112 2212 -2212
+#    for pid in 211 -211 130 321 -321 2112 -2112 2212 -2212
+    for pid in -2212
 #    for pid in 11 -11
     do
 	echo "PID "$pid
