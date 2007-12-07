@@ -16,7 +16,7 @@ PSet MaterialEffects =
     # Enable Multiple Scattering
     bool MultipleScattering = true
     # Smallest pT for the Mutliple Scattering 
-    double pTmin = 0.500
+    double pTmin = 0.300
     # Enable Nuclear Interactions
     bool NuclearInteraction = true
     # The energies of the pions used in the above files (same order)
