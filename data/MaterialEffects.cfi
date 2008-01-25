@@ -84,6 +84,14 @@ PSet MaterialEffects =
     #
     # The smallest pion energy for which nuclear interactions are simulated
     double pionEnergy = 0.500
+
+    # The algorihm to detrmine the distance between the primary and the secondaries
+    # 0 = no link
+    # 1 = sin(theta12) * p1/p2
+    # 2 = sin(theta12)
+    # 3 =  m12
+    uint32 distAlgo = 1
+
     # The ratio between radiation lengths and interation lengths in the tracker at 15 GeV
     vdouble lengthRatio = { 
 #        pi+      pi-    K0L      K+      K-      p      pbar     n      nbar
