@@ -1,6 +1,7 @@
 # Material effects to be simulated in the tracker material and associated cuts
-PSet MaterialEffects = 
-{
+block MaterialEffectsBlock = {
+  PSet MaterialEffects = 
+  {
     # Enable photon pair conversion 
     bool PairProduction = true
     # Smallest photon energy allowed for conversion
@@ -115,5 +116,5 @@ PSet MaterialEffects =
     untracked vint32 Kminusses = { -321 }
     untracked vint32 Piplusses = { 211 }
     untracked vint32 Piminusses = { -211 }
-
+  }
 }
