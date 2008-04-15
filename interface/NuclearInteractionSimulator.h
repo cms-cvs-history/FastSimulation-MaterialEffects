@@ -94,6 +94,9 @@ class NuclearInteractionSimulator : public MaterialEffectsSimulator
 
 
   //  DaqMonitorBEInterface * dbe;
+  //  MonitorElement* hAfter;
+  //  MonitorElement* hAfter2;
+  //  MonitorElement* hAfter3;
   //  MonitorElement* htot;
   //  MonitorElement* helas;
   //  MonitorElement* hinel;
