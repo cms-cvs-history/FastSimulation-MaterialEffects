@@ -155,7 +155,7 @@ block MaterialEffectsForMuonsBlock = {
 	# Smallest bremsstrahlung energy fraction (wrt to the electron energy)
 	double bremEnergyFraction = 0.005
 	# Enable dE/dx
-	bool EnergyLoss = false
+	bool EnergyLoss = true
 	# Enable Multiple Scattering
 	bool MultipleScattering = true
 	# Smallest pT for the Mutliple Scattering 
