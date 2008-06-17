@@ -18,7 +18,3 @@
 <flags EDM_PLUGIN=1>
 </library>
 
-<library file=NuclearInteractionFilter.cc name=NuclearInteractionFilter>
-<flags EDM_PLUGIN=1>
-</library>
-
