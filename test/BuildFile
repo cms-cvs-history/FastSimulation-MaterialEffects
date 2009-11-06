@@ -7,7 +7,6 @@
 <use name=FastSimulation/Event>
 <use name=FastSimulation/Particle>
 <use name=FastSimulation/Utilities>
-<use name=FastSimDataFormats/NuclearInteractions>
 <use name=DQMServices/Core>
 
 <library file=testMaterialEffects.cc name=testMaterialEffects>
