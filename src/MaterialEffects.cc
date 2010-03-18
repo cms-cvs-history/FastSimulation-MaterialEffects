@@ -19,6 +19,8 @@
 #include <map>
 #include <string>
 
+using namespace std;
+
 MaterialEffects::MaterialEffects(const edm::ParameterSet& matEff,
 				 const RandomEngine* engine)
   : PairProduction(0), Bremsstrahlung(0), 
@@ -218,6 +220,34 @@ void MaterialEffects::interact(FSimEvent& mySimEvent,
   theNormalVector = normalVector(layer,myTrack);
   radlen = radLengths(layer,myTrack);
 
+  int mylayer = layer.layerNumber();
+  //  double myphi = myTrack.phi();
+  //  double myeta = myTrack.eta();
+  double myZ = myTrack.Z();
+  double myR = myTrack.R();
+  //  int myid = myTrack.pid();
+
+  FSimTrack& myfsimtrack = mySimEvent.track(itrack);
+  myfsimtrack.addLayerNum(mylayer);
+  myfsimtrack.addLayerRadL(radlen);
+  myfsimtrack.addLayerRpos(myR);
+  myfsimtrack.addLayerZpos(myZ);
+  //  int mylayers = myfsimtrack.nLayers();
+  // int mythislayer = myfsimtrack.layerNum(mylayers-1);
+  // double mythisradl = myfsimtrack.layerRadL(mylayers-1);
+  //  double mydecaytime =  mySimEvent.track(itrack).decayTime();
+
+  //  std::cout << "MaterialEffects::interact:  layer, R, Z phi, eta, radl, nLayers = "; 
+  //  std::cout << mylayer << ", " ;
+  //  std::cout << myR << ", " ;
+  //  std::cout << myZ << ", " ;
+  //  std::cout << myphi << ", " ;
+  //  std::cout << myeta << ", ";
+  //  std::cout << radlen << ", " ;
+  //  std::cout << mythislayer << ", " ;
+  //  std::cout << mythisradl  ;
+  //  std::cout << std::endl;
+
 //-------------------
 //  Photon Conversion
 //-------------------
@@ -230,7 +260,7 @@ void MaterialEffects::interact(FSimEvent& mySimEvent,
     if ( PairProduction->nDaughters() ) {	
       //add a vertex to the mother particle
       int ivertex = mySimEvent.addSimVertex(myTrack.vertex(),itrack,
-					    FSimVertexType::PAIR_VERTEX);
+                                            FSimVertexType::PAIR_VERTEX);
       
       // This was a photon that converted
       for ( DaughterIter = PairProduction->beginDaughters();
@@ -264,7 +294,7 @@ void MaterialEffects::interact(FSimEvent& mySimEvent,
 
       //add a end vertex to the mother particle
       int ivertex = mySimEvent.addSimVertex(myTrack.vertex(),itrack,
-					    FSimVertexType::NUCL_VERTEX);
+                                            FSimVertexType::NUCL_VERTEX);
       
       // This was a hadron that interacted inelastically
       int idaugh = 0;
@@ -305,7 +335,7 @@ void MaterialEffects::interact(FSimEvent& mySimEvent,
       // Add a vertex, but do not attach it to the electron, because it 
       // continues its way...
       int ivertex = mySimEvent.addSimVertex(myTrack.vertex(),itrack,
-					    FSimVertexType::BREM_VERTEX);
+                                            FSimVertexType::BREM_VERTEX);
 
       for ( DaughterIter = Bremsstrahlung->beginDaughters();
 	    DaughterIter != Bremsstrahlung->endDaughters(); 
