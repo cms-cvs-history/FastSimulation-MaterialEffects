@@ -21,6 +21,8 @@
 #include <map>
 #include <string>
 
+//using namespace std;
+
 MaterialEffects::MaterialEffects(const edm::ParameterSet& matEff,
 				 const RandomEngine* engine)
   : PairProduction(0), Bremsstrahlung(0),MuonBremsstrahlung(0),
@@ -233,6 +235,34 @@ void MaterialEffects::interact(FSimEvent& mySimEvent,
   theEnergyLoss = 0;
   theNormalVector = normalVector(layer,myTrack);
   radlen = radLengths(layer,myTrack);
+
+  int mylayer = layer.layerNumber();
+  //  double myphi = myTrack.phi();
+  //  double myeta = myTrack.eta();
+  double myZ = myTrack.Z();
+  double myR = myTrack.R();
+  //  int myid = myTrack.pid();
+
+  FSimTrack& myfsimtrack = mySimEvent.track(itrack);
+  myfsimtrack.addLayerNum(mylayer);
+  myfsimtrack.addLayerRadL(radlen);
+  myfsimtrack.addLayerRpos(myR);
+  myfsimtrack.addLayerZpos(myZ);
+  //  int mylayers = myfsimtrack.nLayers();
+  // int mythislayer = myfsimtrack.layerNum(mylayers-1);
+  // double mythisradl = myfsimtrack.layerRadL(mylayers-1);
+  //  double mydecaytime =  mySimEvent.track(itrack).decayTime();
+
+  //  std::cout << "MaterialEffects::interact:  layer, R, Z phi, eta, radl, nLayers = ";
+  //  std::cout << mylayer << ", " ;
+  //  std::cout << myR << ", " ;
+  //  std::cout << myZ << ", " ;
+  //  std::cout << myphi << ", " ;
+  //  std::cout << myeta << ", ";
+  //  std::cout << radlen << ", " ;
+  //  std::cout << mythislayer << ", " ;
+  //  std::cout << mythisradl  ;
+  //  std::cout << std::endl;
 
 //-------------------
 //  Photon Conversion
